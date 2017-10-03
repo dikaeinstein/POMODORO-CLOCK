@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Angular Material - Starter App</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="viewport" content="initial-scale=1" />
+
+    <link rel='stylesheet' 
+      href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'
+    />
+    <link rel="stylesheet" href="src/vendor/css/angular-material.min.css" />
+    <!--link href="src/app/app.css" rel="stylesheet" /-->
+  </head>
+  <body layout="column" ng-app="pomodoro" ng-cloak
+        ng-controller="AppCtrl as appCtrl">
+        
+    <md-toolbar class="md-medium-tall" layout="row" layout-align="center">
+      <h3>Pomodoro Clock</h3>
+    </md-toolbar>
+    
+    <div flex layout="row" layout-align="center">
+
+      <md-content layout-padding>
+        <count-down-timer duration="{{appCtrl.duration}}">
+        </count-down-timer>
+        <div ng-show="appCtrl.durationInput"> 
+          <p>session</p>
+          <md-slider min="1" max="60"
+            ng-model="appCtrl.duration"></md-slider>
+          <span>{{appCtrl.duration}}</span>
+        </div>
+          
+        <div ng-show="appCtrl.durationInput">
+          <p>break</p>
+          <md-slider min="1" max="5"
+            ng-model="appCtrl.break"></md-slider>
+          <span>{{appCtrl.break}}</span>
+        </div>  
+      </md-content>  
+
+      <md-button class="md-fab md-fab-bottom-right" aria-label="Add session" 
+                 ng-click="appCtrl.showDuration()">
+        <md-tooltip md-direction="left">add session</md-tooltip>
+        <md-icon md-svg-src="src/app/assets/img/icons/add_white_36px.svg"></md-icon>
+      </md-button>
+    </div>
+    <script src='./src/vendor/js/angular.min.js'></script>
+    <script src='./src/vendor/js/angular-animate.min.js'></script>
+    <script src='./src/vendor/js/angular-aria.min.js'></script>
+    <script src='./src/vendor/js/angular-material.min.js'></script>
+    <script src='./src/app/app.js'></script> 
+    <script 
+      src="./src/app/components/countdowntimer/countdowntimer-directive.js">
+    </script>
+  </body>
