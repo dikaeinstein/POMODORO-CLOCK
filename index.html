@@ -24,16 +24,16 @@
     <div flex layout="row" layout-align="center">
 
       <md-content layout-padding>
-        <count-down-timer duration="{{appCtrl.duration}}">
+        <count-down-timer duration="{{appCtrl.pomodoroSession}}">
         </count-down-timer>
-        <div ng-show="appCtrl.durationInput"> 
+        <div ng-show="appCtrl.showPomodoro"> 
           <p>session</p>
           <md-slider min="1" max="60"
-            ng-model="appCtrl.duration"></md-slider>
-          <span>{{appCtrl.duration}}</span>
+            ng-model="appCtrl.pomodoro"></md-slider>
+          <span>{{appCtrl.pomodoro}}</span>
         </div>
           
-        <div ng-show="appCtrl.durationInput">
+        <div ng-show="appCtrl.showPomodoro">
           <p>break</p>
           <md-slider min="1" max="5"
             ng-model="appCtrl.break"></md-slider>
@@ -42,7 +42,7 @@
       </md-content>  
 
       <md-button class="md-fab md-fab-bottom-right" aria-label="Add session" 
-                 ng-click="appCtrl.showDuration()">
+                 ng-click="appCtrl.setShowPomodoro()">
         <md-tooltip md-direction="left">add session</md-tooltip>
         <md-icon md-svg-src="src/app/assets/img/icons/add_white_36px.svg"></md-icon>
       </md-button>

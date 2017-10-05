@@ -3,12 +3,12 @@ angular.module('pomodoro', ['ngMaterial'])
 ///////////////////////
 function AppCtrl() {
   let instance = {
-    duration: 2,
+    pomodoroSession: 2,
     break: 5,
-    durationInput: false,
-    showDuration: function() {
-      if (!instance.durationInput) 
-        instance.durationInput = true;
+    showPomodoro: false,
+    setShowPomodoro: function() {
+      if (!instance.showPomodoro) 
+        instance.showPomodoro = true;
     }
   };
 

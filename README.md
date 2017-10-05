@@ -1,2 +1,2 @@
 # POMODORO-CLOCK
-A simple pomodoro clock for time/tasks management
+A time/tasks management tool using pomodoro technique.
