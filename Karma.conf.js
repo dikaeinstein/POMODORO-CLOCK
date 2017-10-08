@@ -7,8 +7,9 @@ module.exports = function(config) {
       frameworks: ['jasmine'],
 
       files: [
-        'src/vendor/js/angular.js',
-        'src/vendor/js/angular-mocks.js',
+        'src/vendor/js/angular.min.js',
+        'src/vendor/js/*.js',
+        'node_modules/angular-mocks/angular-mocks.js',
         'src/app/*.js',
         'src/app/**/*.js',
         'src/app/components/countdowntimer/countdowntimer.html'

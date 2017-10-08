@@ -18,30 +18,47 @@
         ng-controller="AppCtrl as appCtrl">
         
     <md-toolbar class="md-medium-tall" layout="row" layout-align="center">
-      <h3>Pomodoro Clock</h3>
+      <h3 class="md-display-1">Pomodoro Clock</h3>
     </md-toolbar>
     
-    <div flex layout="row" layout-align="center">
+    <div flex layout="row" layout-align="center none">
 
       <md-content layout-padding>
-        <count-down-timer duration="{{appCtrl.pomodoroSession}}">
+        <count-down-timer 
+            duration="appCtrl.duration" 
+            running="appCtrl.disableInputs()"
+            resetted="appCtrl.enableInputs()"
+            stop="appCtrl.toggleTimer()">
         </count-down-timer>
-        <div ng-show="appCtrl.showPomodoro"> 
-          <p>session</p>
-          <md-slider min="1" max="60"
-            ng-model="appCtrl.pomodoro"></md-slider>
-          <span>{{appCtrl.pomodoro}}</span>
+
+        <div>break: {{appCtrl.breakLength}}</div>
+
+        <div md-colors="::{backgroundColor: 'teal'}" 
+             ng-show="appCtrl.showPomodoro">
+        <div layout="row">
+          <md-input-container class="md-block" flex>
+            <label>session</label>
+            <input type="text" ng-model="appCtrl.sessionLength" 
+                   ng-disabled="appCtrl.disable"/>
+          </md-input-container>
+
+          <md-input-container class="md-block" flex>
+            <label>break</label>
+            <input type="text" ng-model="appCtrl.breakLength" 
+                   ng-disabled="appCtrl.disable"/>
+          </md-input-container>
         </div>
-          
-        <div ng-show="appCtrl.showPomodoro">
-          <p>break</p>
-          <md-slider min="1" max="5"
-            ng-model="appCtrl.break"></md-slider>
-          <span>{{appCtrl.break}}</span>
+
+        <md-button class="md-raised" ng-click="appCtrl.setPomodoro()">
+          <md-tooltip md-direction="bottom">set pomodoro</md-tooltip>
+          set pomodoro
+        </md-button>
         </div>  
       </md-content>  
 
-      <md-button class="md-fab md-fab-bottom-right" aria-label="Add session" 
+      <md-button class="md-fab md-fab-bottom-right" 
+                 md-colors="::{backgroundColor: 'teal'}"
+                 aria-label="Add session" 
                  ng-click="appCtrl.setShowPomodoro()">
         <md-tooltip md-direction="left">add session</md-tooltip>
         <md-icon md-svg-src="src/app/assets/img/icons/add_white_36px.svg"></md-icon>

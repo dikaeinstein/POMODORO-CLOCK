@@ -5,29 +5,42 @@ function CountDownTimer($interval) {
   return {
     templateUrl: 'src/app/components/countdowntimer/countdowntimer.html',
     restrict: 'E',
-    scope: { duration: '@' },
+    scope: { 
+      duration: '=', 
+      running: '&',
+      stop: '&',
+      resetted: '&'
+    },
     link: link
   };
   ///////////////////////
   function link(scope, elem, attrs) {
-    let timer;
-    scope.duration = Number(scope.duration);
-    scope.mins = 0;
+    let timer, listener;
+    scope.mins = scope.duration.value;
     scope.secs = 0;
-    scope.started = false;
-
+    scope.stopped = true;
+    elem.find('button').eq(0).on('click', () => {
+      listener = scope.$watch('duration', (oldVal, newVal) => {
+        if (oldVal !== newVal) 
+          scope.startCountdown();
+      }, true);
+    });
+  
     scope.startCountdown = () => {
-      if (!scope.started) {
-        initCountdown(scope.duration);
-        scope.started = true;
+      if (scope.stopped) {
+        initCountdown(scope.duration.value);
+        scope.running();
+        scope.stopped = false;
       }
     };
 
     scope.resetCountdown = () => {
       $interval.cancel(timer);
-      scope.mins = 0;
+      listener();
+      scope.mins = scope.duration.value;
       scope.secs = 0;
-      scope.started = false; 
+      scope.stopped = true;
+      scope.resetted();
     };
 
     scope.$on('destroy', () => {
@@ -35,24 +48,25 @@ function CountDownTimer($interval) {
     });
 
     function initCountdown(dura) {
-      let durationSecs = dura * 60;
+      let durationSecs = Number(dura) * 60;
       durationSecs = updateTimer(durationSecs);
       timer = $interval(() => {
         durationSecs = updateTimer(durationSecs);
-        console.log(durationSecs);
       }, 1000);
     }
 
     function updateTimer(duration) {
+      if (duration <= 0) {
+        scope.stop();
+        $interval.cancel(timer);
+        scope.stopped = true;
+      }
+      
       let mins = Math.floor(duration / 60),
       secs = duration % 60;
 
       scope.mins = mins;
       scope.secs = secs;
-
-      if (duration <= 0) {
-        $interval.cancel(timer);
-      }
       duration -= 1;
       return duration;
     }
