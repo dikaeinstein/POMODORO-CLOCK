@@ -10,11 +10,11 @@ describe('AppCtrl', () => {
   }));
 
   it('should have default fields on load', () => {
-    expect(appCtrl.sessionLength).toEqual(2);
-    expect(appCtrl.breakLength).toEqual(1);
+    expect(appCtrl.sessionLength).toEqual(25);
+    expect(appCtrl.breakLength).toEqual(5);
     expect(appCtrl.duration).toEqual({ 
       name: 'sessionLength', 
-      value: 2 
+      value: 25 
     });
     expect(appCtrl.disable).toBeFalsy();
     expect(appCtrl.showPomodoro).toBeFalsy();
@@ -33,7 +33,7 @@ describe('AppCtrl', () => {
   });
 
   it('should set pomodoro session length', () => {
-    expect(appCtrl.duration.value).toEqual(2);
+    expect(appCtrl.duration.value).toEqual(25);
     appCtrl.sessionLength = 5;
     // updating the timer value in the duration passed to the
     // countDownTimer directive / component 

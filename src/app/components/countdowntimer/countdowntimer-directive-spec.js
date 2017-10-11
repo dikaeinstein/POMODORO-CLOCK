@@ -27,8 +27,11 @@ describe('Countdown Timer Directive Tests', () => {
     let mins = elem.isolateScope().mins;
     let secs = elem.isolateScope().secs;
 
-    expect(elem.isolateScope().duration).toEqual({name: 'sessionLength', value: 2});
-    expect(Number(mins)).toEqual(2);
+    expect(elem.isolateScope().duration).toEqual({
+      name: 'sessionLength', 
+      value: 25
+    });
+    expect(Number(mins)).toEqual(0);
     expect(Number(secs)).toEqual(0);
     expect(elem.find('span').eq(0).text()).toEqual(String(mins));
     expect(elem.find('span').eq(1).text()).toEqual(String(secs));
@@ -55,10 +58,10 @@ describe('Countdown Timer Directive Tests', () => {
     let mins = elem.find('span').eq(0).text();
     let secs = elem.find('span').eq(1).text();
 
-    expect(sc.mins).toEqual(1);
-    expect(sc.secs).toEqual(0);
+    expect(sc.mins).toEqual(24);
+    expect(sc.secs).toEqual('00');
     expect(Number(mins)).toEqual(sc.mins);
-    expect(Number(secs)).toEqual(sc.secs);
+    expect(secs).toEqual(sc.secs);
   });
 
   it('should reset timer', () => {
