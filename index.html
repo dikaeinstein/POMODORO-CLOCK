@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
   <head>
-    <title>Angular Material - Starter App</title>
+    <title>POMODORO CLOCK</title>
 
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -12,18 +12,19 @@
       href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'
     />
     <link rel="stylesheet" href="src/vendor/css/angular-material.min.css" />
-    <!--link href="src/app/app.css" rel="stylesheet" /-->
+    <link href="src/app/assets/css/app.css" rel="stylesheet" />
   </head>
   <body layout="column" ng-app="pomodoro" ng-cloak
         ng-controller="AppCtrl as appCtrl">
-        
+    <!-- Header -->    
     <md-toolbar class="md-medium-tall" layout="row" layout-align="center">
       <h3 class="md-display-1">Pomodoro Clock</h3>
     </md-toolbar>
-    
+    <!-- Content -->
     <div flex layout="row" layout-align="center none">
 
       <md-content layout-padding>
+        <!-- CountDownTimer Directive -->
         <count-down-timer 
             duration="appCtrl.duration" 
             running="appCtrl.disableInputs()"
@@ -31,31 +32,43 @@
             stop="appCtrl.toggleTimer()">
         </count-down-timer>
 
-        <div>break: {{appCtrl.breakLength}}</div>
-
-        <div md-colors="::{backgroundColor: 'teal'}" 
-             ng-show="appCtrl.showPomodoro">
-        <div layout="row">
-          <md-input-container class="md-block" flex>
-            <label>session</label>
-            <input type="text" ng-model="appCtrl.sessionLength" 
-                   ng-disabled="appCtrl.disable"/>
-          </md-input-container>
-
-          <md-input-container class="md-block" flex>
-            <label>break</label>
-            <input type="text" ng-model="appCtrl.breakLength" 
-                   ng-disabled="appCtrl.disable"/>
-          </md-input-container>
+        <div class="space-around" ng-class="{'md-display-1': appCtrl.isBigScreen}">
+          Break Length: {{appCtrl.breakLength}}
         </div>
+        <!-- Pomodoro Session and Break Length -->
+        <div md-colors="::{backgroundColor: 'lime'}" 
+             ng-show="appCtrl.showPomodoro"
+             class="pomo">
+          
+          <div layout="row">
+            <md-input-container class="space-around" flex>
+              <label>Session Length</label>
+              <input type="text" ng-model="appCtrl.sessionLength" 
+                    ng-disabled="appCtrl.disable"/>
+            </md-input-container>
 
-        <md-button class="md-raised" ng-click="appCtrl.setPomodoro()">
-          <md-tooltip md-direction="bottom">set pomodoro</md-tooltip>
-          set pomodoro
-        </md-button>
+            <md-input-container class="space-around" flex>
+              <label>Break Length</label>
+              <input type="text" ng-model="appCtrl.breakLength" 
+                    ng-model-options="{ updateOn: 'blur' }"
+                    ng-disabled="appCtrl.disable"/>
+            </md-input-container>
+            <span class="close space-around" ng-click="appCtrl.setShowPomodoro()">
+              <md-tooltip md-direction="right">close</md-tooltip>
+              x
+            </span>
+          </div>
+
+          <md-button class="md-raised space-around" 
+                    ng-click="appCtrl.setPomodoro()">
+            <md-tooltip md-direction="bottom">
+              set pomodoro
+            </md-tooltip>
+            set pomodoro
+          </md-button>
         </div>  
       </md-content>  
-
+      <!-- Floating Button -->
       <md-button class="md-fab md-fab-bottom-right" 
                  md-colors="::{backgroundColor: 'teal'}"
                  aria-label="Add session" 

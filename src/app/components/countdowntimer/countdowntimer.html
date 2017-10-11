@@ -1,9 +1,9 @@
-<md-card >
-  <md-card-content class="md-display-2">
+<md-card class="center-text" ng-class="{md: isBigScreen}">
+  <md-card-content ng-class="{'md-display-1': isSmallScreen, 'md-display-4': isBigScreen}">
     <span class="mins">{{mins}}</span> : 
     <span class="secs">{{secs}}</span>
   </md-card-content>
-  <md-card-content class="buttons">
+  <md-card-content> 
     <md-button class="md-raised" ng-click="startCountdown()">
       <md-tooltip md-direction="bottom">start countdown</md-tooltip>
       start countdown

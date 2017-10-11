@@ -1,7 +1,7 @@
 angular.module('pomodoro')
   .directive('countDownTimer', CountDownTimer);
 
-function CountDownTimer($interval) {
+function CountDownTimer($interval, $mdMedia) {
   return {
     templateUrl: 'src/app/components/countdowntimer/countdowntimer.html',
     restrict: 'E',
@@ -16,7 +16,9 @@ function CountDownTimer($interval) {
   ///////////////////////
   function link(scope, elem, attrs) {
     let timer, listener;
-    scope.mins = scope.duration.value;
+    scope.isSmallScreen = $mdMedia('xs');
+    scope.isBigScreen = $mdMedia('gt-xs');
+    scope.mins = 0;
     scope.secs = 0;
     scope.stopped = true;
     elem.find('button').eq(0).on('click', () => {
@@ -63,14 +65,14 @@ function CountDownTimer($interval) {
       }
       
       let mins = Math.floor(duration / 60),
-      secs = duration % 60;
+      secs = String(duration % 60);
 
       scope.mins = mins;
-      scope.secs = secs;
+      scope.secs = secs.length < 2 ? '0' + secs : secs;
       duration -= 1;
       return duration;
     }
   }
 }
 
-CountDownTimer.$inject = ['$interval'];
+CountDownTimer.$inject = ['$interval', '$mdMedia'];

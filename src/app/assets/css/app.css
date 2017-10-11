@@ -1,0 +1,20 @@
+.center-text {
+  text-align: center;
+}
+
+.space-around {
+  margin: 15px;
+}
+
+.md {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.pomo {
+  border-radius: 4px;
+}
