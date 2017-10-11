@@ -11,6 +11,9 @@
     <link rel='stylesheet' 
       href='https://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'
     />
+    <link 
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
     <link rel="stylesheet" href="src/vendor/css/angular-material.min.css" />
     <link href="src/app/assets/css/app.css" rel="stylesheet" />
   </head>
@@ -53,7 +56,8 @@
                     ng-model-options="{ updateOn: 'blur' }"
                     ng-disabled="appCtrl.disable"/>
             </md-input-container>
-            <span class="close space-around" ng-click="appCtrl.setShowPomodoro()">
+            <span class="close space-around" 
+                  ng-click="appCtrl.setShowPomodoro()">
               <md-tooltip md-direction="right">close</md-tooltip>
               x
             </span>
@@ -72,9 +76,10 @@
       <md-button class="md-fab md-fab-bottom-right" 
                  md-colors="::{backgroundColor: 'teal'}"
                  aria-label="Add session" 
-                 ng-click="appCtrl.setShowPomodoro()">
+                 ng-click="appCtrl.setShowPomodoro()"
+                 ng-hide="appCtrl.showPomodoro">
         <md-tooltip md-direction="left">add session</md-tooltip>
-        <md-icon md-svg-src="src/app/assets/img/icons/add_white_36px.svg"></md-icon>
+        <md-icon><i class="material-icons">&#xE145;</i></md-icon>
       </md-button>
     </div>
     <script src='./src/vendor/js/angular.min.js'></script>

@@ -39,7 +39,7 @@ function CountDownTimer($interval, $mdMedia) {
     scope.resetCountdown = () => {
       $interval.cancel(timer);
       listener();
-      scope.mins = scope.duration.value;
+      scope.mins = 0;
       scope.secs = 0;
       scope.stopped = true;
       scope.resetted();
