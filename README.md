@@ -1,5 +1,6 @@
 # POMODORO-CLOCK
 A time/tasks management tool using pomodoro technique. Written with AngularJS.
+To view live [pomodoro](https://dikaeinstein.github.io/pomodoro-clock)
 
 Install karma-cli globally so you can run karma easily from command line.
 
